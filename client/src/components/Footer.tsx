@@ -19,13 +19,12 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link href="/">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#0078D4] to-[#00B4D8] flex items-center justify-center">
-                  <span className="text-white font-bold text-lg" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>A</span>
-                </div>
-                <span className="text-white font-bold text-xl" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                  Aicen <span className="text-[#00B4D8]">Solutions</span>
-                </span>
+              <div className="flex items-center mb-4">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663415723832/JrGn9WVGPcqBe9gGrUn75a/aicen-logo_5c677265.jpg"
+                  alt="Aicen Solutions Logo"
+                  className="h-14 w-auto object-contain rounded-lg"
+                />
               </div>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-5" style={{ fontFamily: "'DM Sans', sans-serif" }}>
