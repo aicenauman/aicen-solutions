@@ -143,7 +143,7 @@ export default function About() {
               </h2>
               <p className="text-[#64748B] leading-relaxed mb-6"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                Founded in 2012, Aicen Solutions has grown from a small ERP consultancy to a leading Microsoft Partner with over 50 certified professionals serving clients across multiple industries and regions.
+                Founded in 2020, Aicen Solutions has grown from a small ERP consultancy to a leading Microsoft Partner with over 50 certified professionals serving clients across multiple industries and regions.
               </p>
               <p className="text-[#64748B] leading-relaxed mb-8"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}>
