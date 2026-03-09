@@ -5,6 +5,7 @@
 
 import { Link } from "wouter";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Youtube, ArrowRight } from "lucide-react";
+import NewsletterSubscribe from "@/components/NewsletterSubscribe";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -140,6 +141,23 @@ export default function Footer() {
                   <Icon className="w-4 h-4" />
                 </a>
               ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Newsletter Strip */}
+        <div className="mt-12 mb-8 p-6 bg-white/5 border border-white/10 rounded-2xl">
+          <div className="flex flex-col md:flex-row items-center gap-6">
+            <div className="flex-1 min-w-0">
+              <h4 className="text-white font-extrabold text-base mb-1" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                Subscribe to Our Newsletter
+              </h4>
+              <p className="text-white/50 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Get the latest ERP insights and Business Central tips delivered to your inbox.
+              </p>
+            </div>
+            <div className="flex-shrink-0 w-full md:w-80">
+              <NewsletterSubscribe variant="minimal" />
             </div>
           </div>
         </div>

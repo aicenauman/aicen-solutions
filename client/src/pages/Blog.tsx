@@ -22,6 +22,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import NewsletterSubscribe from "@/components/NewsletterSubscribe";
 
 const categories = ["All", "Business Central", "ERP Implementation", "Finance", "Cloud ERP", "Best Practices"];
 
@@ -625,7 +626,20 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* Newsletter CTA */}
+      {/* Newsletter Subscribe Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <NewsletterSubscribe variant="dark" />
+          </motion.div>
+        </div>
+      </section>
+
       <section className="py-16 bg-gradient-to-br from-[#0D1B2A] to-[#0A2540]">
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl text-center">
           <motion.div
