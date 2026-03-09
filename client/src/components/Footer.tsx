@@ -127,11 +127,13 @@ export default function Footer() {
               {[
         { icon: Linkedin, href: "#", label: "LinkedIn" },
               { icon: Twitter, href: "#", label: "Twitter" },
-              { icon: Youtube, href: "#", label: "YouTube" },
+              { icon: Youtube, href: "https://www.youtube.com/channel/UCOBs79Q2bSBl5antxmaRKYQ", label: "YouTube" },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#00B4D8] hover:border-[#00B4D8]/30 hover:bg-[#00B4D8]/10 transition-all"
                 >
