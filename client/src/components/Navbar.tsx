@@ -45,6 +45,17 @@ export default function Navbar() {
 
   const isActive = (href: string) => location === href;
 
+  const handleServicesClick = () => {
+    if (location === "/") {
+      // Scroll to #services section on homepage
+      const el = document.getElementById("services");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Navigate to homepage services section
+      window.location.href = "/#services";
+    }
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -74,6 +85,7 @@ export default function Navbar() {
                   <button
                     className="flex items-center gap-1 px-4 py-2 text-white/80 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5"
                     style={{ fontFamily: "'DM Sans', sans-serif" }}
+                    onClick={handleServicesClick}
                   >
                     {link.label}
                     <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
@@ -140,7 +152,7 @@ export default function Navbar() {
                 <div key={link.label}>
                   <button
                     className="w-full flex items-center justify-between px-4 py-3 text-white/80 hover:text-white text-sm font-medium rounded-lg hover:bg-white/5 transition-colors"
-                    onClick={() => setServicesOpen(!servicesOpen)}
+                    onClick={() => { setServicesOpen(!servicesOpen); handleServicesClick(); }}
                     style={{ fontFamily: "'DM Sans', sans-serif" }}
                   >
                     {link.label}
