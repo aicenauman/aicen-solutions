@@ -389,7 +389,7 @@ export default function CaseStudies() {
               { icon: CheckCircle2, value: "150+", label: "Implementations" },
               { icon: TrendingUp, value: "98%", label: "Client Satisfaction" },
               { icon: Users, value: "50+", label: "Certified Consultants" },
-              { icon: Clock, value: "Avg 3.5mo", label: "Go-Live Timeline" },
+              { icon: Clock, value: "Avg. 3-6months", label: "Go-Live Timeline" },
             ].map((stat) => (
               <div key={stat.label} className="flex items-center gap-3">
                 <stat.icon className="w-5 h-5 text-[#00B4D8]" />
