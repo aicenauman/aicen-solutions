@@ -4,7 +4,7 @@
  */
 
 import { Link } from "wouter";
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Twitter, Youtube, ArrowRight } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -125,9 +125,9 @@ export default function Footer() {
             {/* Social Links */}
             <div className="flex items-center gap-3 mt-6">
               {[
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
-                { icon: Twitter, href: "#", label: "Twitter" },
-                { icon: Facebook, href: "#", label: "Facebook" },
+        { icon: Linkedin, href: "#", label: "LinkedIn" },
+              { icon: Twitter, href: "#", label: "Twitter" },
+              { icon: Youtube, href: "#", label: "YouTube" },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
