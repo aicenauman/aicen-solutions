@@ -125,7 +125,7 @@ export default function Footer() {
             {/* Social Links */}
             <div className="flex items-center gap-3 mt-6">
               {[
-        { icon: Linkedin, href: "#", label: "LinkedIn" },
+        { icon: Linkedin, href: "https://www.linkedin.com/company/aicen-solutions", label: "LinkedIn" },
               { icon: Twitter, href: "#", label: "Twitter" },
               { icon: Youtube, href: "https://www.youtube.com/channel/UCOBs79Q2bSBl5antxmaRKYQ", label: "YouTube" },
               ].map(({ icon: Icon, href, label }) => (
