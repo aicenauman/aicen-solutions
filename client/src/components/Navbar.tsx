@@ -68,12 +68,27 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-18 py-4">
           {/* Logo */}
           <Link href="/">
-            <div className="flex items-center group">
+            <div className="flex items-center gap-3 group">
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663415723832/JrGn9WVGPcqBe9gGrUn75a/aicen-logo_5c677265.jpg"
                 alt="Aicen Solutions Logo"
                 className="h-12 w-auto object-contain rounded-lg"
               />
+              <div className="flex flex-col leading-tight">
+                <span
+                  className="text-white font-extrabold text-lg tracking-tight"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
+                  Aicen
+                  <span className="text-[#00B4D8]"> Solutions</span>
+                </span>
+                <span
+                  className="text-white/40 text-xs font-medium tracking-wide"
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                >
+                  Microsoft Partner
+                </span>
+              </div>
             </div>
           </Link>
 
