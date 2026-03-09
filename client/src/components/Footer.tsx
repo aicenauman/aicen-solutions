@@ -150,12 +150,14 @@ export default function Footer() {
             © {currentYear} Aicen Solutions. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            {["Privacy Policy", "Terms of Service"].map((item) => (
-              <a key={item} href="#" className="text-white/40 hover:text-white/70 text-sm transition-colors"
-                style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                {item}
-              </a>
-            ))}
+            <Link href="/privacy-policy" className="text-white/40 hover:text-white/70 text-sm transition-colors"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              Privacy Policy
+            </Link>
+            <Link href="/terms-of-service" className="text-white/40 hover:text-white/70 text-sm transition-colors"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>
