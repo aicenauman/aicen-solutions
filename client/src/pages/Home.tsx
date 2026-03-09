@@ -181,7 +181,7 @@ const detailedServices = [
 const stats = [
   { value: 150, suffix: "+", label: "Successful Implementations" },
   { value: 98, suffix: "%", label: "Client Satisfaction Rate" },
-  { value: 5, suffix: "+", label: "Years of Experience" },
+  { value: 12, suffix: "+", label: "Years of Experience" },
   { value: 50, suffix: "+", label: "Certified Consultants" },
 ];
 
@@ -484,7 +484,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex flex-wrap items-center gap-6 mt-10"
             >
-              {["150+ Implementations", "98% Satisfaction", "5+ Years Experience"].map((item) => (
+              {["150+ Implementations", "98% Satisfaction", "12+ Years Experience"].map((item) => (
                 <div key={item} className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#00B4D8]" />
                   <span className="text-white/60 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>{item}</span>
@@ -676,7 +676,7 @@ export default function Home() {
               </div>
               <div className="absolute -bottom-6 -right-6 bg-[#0D1B2A] rounded-2xl p-5 shadow-2xl">
                 <div className="text-3xl font-extrabold text-white mb-1" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                  <span className="gradient-text">5+</span>
+                  <span className="gradient-text">12+</span>
                 </div>
                 <p className="text-white/60 text-xs" style={{ fontFamily: "'DM Sans', sans-serif" }}>Years of Microsoft<br />Partnership</p>
               </div>
