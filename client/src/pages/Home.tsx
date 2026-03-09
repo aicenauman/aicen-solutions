@@ -1,18 +1,19 @@
 /**
  * AICEN SOLUTIONS - HOME PAGE
  * Design: Modern Tech-Forward B2B SaaS
- * Sections: Hero, Stats, Services, Why Us, Industries, Testimonials, CTA
+ * Sections: Hero, Stats, Detailed Services, Why Us, Industries, Testimonials, CTA
  * Colors: Midnight Blue (#0D1B2A) + MS Blue (#0078D4) + Teal (#00B4D8)
  * Typography: Plus Jakarta Sans (headings) + DM Sans (body)
  */
 
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowRight, CheckCircle2, Star, ChevronRight,
+  ArrowRight, CheckCircle2, Star, ChevronRight, Plus,
   Cog, HeadphonesIcon, GraduationCap, TrendingUp, Wrench,
-  Building2, ShoppingCart, Factory, Truck, Landmark, Leaf
+  Building2, ShoppingCart, Factory, Truck, Landmark, Leaf,
+  BarChart3, CloudCog, RefreshCw, Users, Shield, Zap
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
@@ -51,10 +52,8 @@ function StatCounter({ value, suffix, label, inView }: { value: number; suffix: 
 
   return (
     <div className="text-center">
-      <div
-        className="text-4xl lg:text-5xl font-extrabold text-white mb-2"
-        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-      >
+      <div className="text-4xl lg:text-5xl font-extrabold text-white mb-2"
+        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
         <span className="gradient-text">{count}{suffix}</span>
       </div>
       <p className="text-white/60 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
@@ -64,40 +63,117 @@ function StatCounter({ value, suffix, label, inView }: { value: number; suffix: 
   );
 }
 
-const services = [
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const detailedServices = [
   {
+    id: "implementation",
     icon: Cog,
-    title: "BC Implementation",
-    description: "End-to-end Business Central deployment tailored to your business processes, from requirements gathering to go-live and beyond.",
+    tag: "Core Service",
+    title: "Business Central Implementation",
+    subtitle: "Full-cycle ERP deployment, configured to your exact business processes.",
     color: "#0078D4",
+    gradient: "from-[#0078D4] to-[#005A9E]",
+    lightBg: "bg-[#EBF5FF]",
+    description:
+      "We deliver end-to-end Business Central implementations using a proven, structured methodology. From the initial discovery workshop through go-live and hypercare, our certified consultants ensure your ERP is configured to match your workflows — not the other way around.",
+    features: [
+      { icon: BarChart3, text: "Requirements analysis & business process mapping" },
+      { icon: CloudCog, text: "Full system configuration & customization" },
+      { icon: RefreshCw, text: "Data migration from legacy ERP or spreadsheets" },
+      { icon: Shield, text: "Integration with Microsoft 365, Power BI & third-party apps" },
+      { icon: Users, text: "User acceptance testing (UAT) & sign-off" },
+      { icon: Zap, text: "Go-live execution & post-launch hypercare support" },
+    ],
+    outcomes: ["60% faster month-end close", "Real-time financial visibility", "Unified data across departments"],
     href: "/services#implementation",
   },
   {
+    id: "support",
     icon: HeadphonesIcon,
+    tag: "Ongoing",
     title: "Support & Maintenance",
-    description: "Dedicated ongoing support to keep your Business Central running smoothly, with rapid response SLAs and proactive monitoring.",
+    subtitle: "Dedicated helpdesk and proactive system care to keep you running at peak performance.",
     color: "#00B4D8",
+    gradient: "from-[#00B4D8] to-[#0090B0]",
+    lightBg: "bg-[#E8FAFE]",
+    description:
+      "After go-live, your Business Central environment needs ongoing attention. Our support packages provide a dedicated team, defined SLAs, proactive monitoring, and continuous optimization — so your team can focus on the business, not the system.",
+    features: [
+      { icon: HeadphonesIcon, text: "Dedicated support team with named contacts" },
+      { icon: Shield, text: "Tiered SLAs: Critical (2hr), High (4hr), Normal (1 day)" },
+      { icon: BarChart3, text: "Proactive system health monitoring & alerts" },
+      { icon: RefreshCw, text: "Microsoft update management & patch deployment" },
+      { icon: Zap, text: "Performance tuning & query optimization" },
+      { icon: Users, text: "Monthly review calls & quarterly roadmap sessions" },
+    ],
+    outcomes: ["99.9% system uptime", "2-hour critical response SLA", "Proactive issue prevention"],
     href: "/services#support",
   },
   {
+    id: "consulting",
     icon: TrendingUp,
+    tag: "Strategic",
     title: "ERP Consulting",
-    description: "Strategic advisory services to align your ERP roadmap with business goals, optimizing workflows and maximizing ROI.",
+    subtitle: "Strategic advisory to align your ERP roadmap with long-term business objectives.",
     color: "#0078D4",
+    gradient: "from-[#0078D4] to-[#005A9E]",
+    lightBg: "bg-[#EBF5FF]",
+    description:
+      "Not sure where to start, or struggling to get ROI from your current system? Our senior consultants conduct a thorough assessment of your processes, identify gaps, and build a pragmatic roadmap that delivers measurable business value — fast.",
+    features: [
+      { icon: BarChart3, text: "Current-state assessment & gap analysis" },
+      { icon: TrendingUp, text: "ERP strategy & digital transformation roadmap" },
+      { icon: RefreshCw, text: "Business process re-engineering & optimization" },
+      { icon: Users, text: "Change management planning & stakeholder alignment" },
+      { icon: Shield, text: "ROI analysis & business case development" },
+      { icon: Zap, text: "Vendor evaluation & technology selection support" },
+    ],
+    outcomes: ["Clear ERP roadmap in 4 weeks", "Measurable ROI targets", "Stakeholder buy-in secured"],
     href: "/services#consulting",
   },
   {
+    id: "training",
     icon: GraduationCap,
+    tag: "Enablement",
     title: "User Training",
-    description: "Comprehensive training programs that empower your team to fully leverage Business Central's capabilities from day one.",
+    subtitle: "Role-based training programs that turn your team into confident Business Central power users.",
     color: "#00B4D8",
+    gradient: "from-[#00B4D8] to-[#0090B0]",
+    lightBg: "bg-[#E8FAFE]",
+    description:
+      "Technology is only as powerful as the people using it. Our training specialists design and deliver role-based programs tailored to your specific BC configuration — ensuring every user, from finance clerks to warehouse staff, is productive from day one.",
+    features: [
+      { icon: Users, text: "Role-based curriculum: Finance, Operations, Sales, Warehouse" },
+      { icon: GraduationCap, text: "On-site, remote, and blended delivery options" },
+      { icon: BarChart3, text: "Train-the-trainer programs for internal champions" },
+      { icon: Shield, text: "Custom user guides & quick-reference cards" },
+      { icon: Zap, text: "E-learning module development for self-paced learning" },
+      { icon: RefreshCw, text: "Post-training competency assessments & refreshers" },
+    ],
+    outcomes: ["90%+ user adoption rate", "Reduced support tickets post-training", "Faster onboarding for new hires"],
     href: "/services#training",
   },
   {
+    id: "migration",
     icon: Wrench,
+    tag: "Transition",
     title: "Upgrades & Migration",
-    description: "Seamless migration from legacy ERP systems or older BC versions, ensuring data integrity and minimal business disruption.",
+    subtitle: "Seamless transitions from legacy ERP systems or older BC versions with zero data loss.",
     color: "#0078D4",
+    gradient: "from-[#0078D4] to-[#005A9E]",
+    lightBg: "bg-[#EBF5FF]",
+    description:
+      "Whether you're moving from NAV, GP, SAP, Sage, or a custom system, our migration specialists have the tools and experience to get you to Business Central safely. We use a phased approach to minimize risk and ensure data integrity throughout the transition.",
+    features: [
+      { icon: BarChart3, text: "Legacy system analysis & data mapping workshops" },
+      { icon: Shield, text: "Data cleansing, transformation & validation" },
+      { icon: RefreshCw, text: "Phased migration with parallel-run management" },
+      { icon: CloudCog, text: "On-premise to cloud (SaaS) migration support" },
+      { icon: Zap, text: "Cutover planning, rehearsal & execution" },
+      { icon: Users, text: "Post-migration validation, reconciliation & support" },
+    ],
+    outcomes: ["Zero data loss guaranteed", "Minimal business disruption", "Faster cloud adoption"],
     href: "/services#migration",
   },
 ];
@@ -148,6 +224,173 @@ const whyUsPoints = [
   "Local expertise with global Microsoft best practices",
 ];
 
+// ─── DETAILED SERVICE CARD COMPONENT ────────────────────────────────────────
+
+function ServiceCard({ service, index }: { service: typeof detailedServices[0]; index: number }) {
+  const [expanded, setExpanded] = useState(false);
+  const isEven = index % 2 === 0;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.55, delay: index * 0.08 }}
+      className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 overflow-hidden"
+    >
+      {/* Top gradient accent bar */}
+      <div className={`h-1 w-full bg-gradient-to-r ${service.gradient}`} />
+
+      <div className="p-8">
+        {/* Header row */}
+        <div className="flex items-start justify-between gap-4 mb-6">
+          <div className="flex items-start gap-4">
+            {/* Icon */}
+            <div
+              className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm"
+              style={{ background: `${service.color}18` }}
+            >
+              <service.icon className="w-7 h-7" style={{ color: service.color }} />
+            </div>
+            <div>
+              {/* Tag */}
+              <span
+                className="inline-block text-xs font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full mb-2"
+                style={{ color: service.color, background: `${service.color}15` }}
+              >
+                {service.tag}
+              </span>
+              <h3
+                className="text-xl font-extrabold text-[#0D1B2A] leading-tight"
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              >
+                {service.title}
+              </h3>
+            </div>
+          </div>
+
+          {/* Expand toggle */}
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="flex-shrink-0 w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all duration-300"
+            style={{
+              borderColor: expanded ? service.color : "#E2E8F0",
+              background: expanded ? `${service.color}10` : "transparent",
+              color: expanded ? service.color : "#94A3B8",
+            }}
+            aria-label={expanded ? "Collapse" : "Expand"}
+          >
+            <Plus
+              className="w-4 h-4 transition-transform duration-300"
+              style={{ transform: expanded ? "rotate(45deg)" : "rotate(0deg)" }}
+            />
+          </button>
+        </div>
+
+        {/* Subtitle */}
+        <p
+          className="text-[#374151] font-medium text-base mb-4 leading-snug"
+          style={{ fontFamily: "'DM Sans', sans-serif" }}
+        >
+          {service.subtitle}
+        </p>
+
+        {/* Description */}
+        <p
+          className="text-[#64748B] text-sm leading-relaxed mb-6"
+          style={{ fontFamily: "'DM Sans', sans-serif" }}
+        >
+          {service.description}
+        </p>
+
+        {/* Feature list — always visible, 2-column grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+          {service.features.map((f, fi) => (
+            <div key={fi} className="flex items-start gap-2.5">
+              <div
+                className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5"
+                style={{ background: `${service.color}15` }}
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" style={{ color: service.color }} />
+              </div>
+              <span
+                className="text-[#374151] text-sm leading-snug"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                {f.text}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Expandable: Outcomes + CTA */}
+        <AnimatePresence>
+          {expanded && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.35 }}
+              className="overflow-hidden"
+            >
+              <div
+                className={`rounded-2xl p-5 mb-5 ${service.lightBg} border`}
+                style={{ borderColor: `${service.color}25` }}
+              >
+                <p
+                  className="text-xs font-semibold uppercase tracking-widest mb-3"
+                  style={{ color: service.color, fontFamily: "'DM Sans', sans-serif" }}
+                >
+                  Typical Client Outcomes
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {service.outcomes.map((o) => (
+                    <span
+                      key={o}
+                      className="flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-full bg-white shadow-sm"
+                      style={{ color: service.color, fontFamily: "'DM Sans', sans-serif" }}
+                    >
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      {o}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Footer row */}
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+          <Link href={service.href}>
+            <div
+              className="flex items-center gap-1.5 text-sm font-semibold transition-all group/link cursor-pointer"
+              style={{ color: service.color, fontFamily: "'DM Sans', sans-serif" }}
+            >
+              Learn More
+              <ChevronRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+          <Link href="/contact">
+            <Button
+              size="sm"
+              className="text-white font-semibold rounded-lg px-4 py-2 text-xs shadow-sm transition-all hover:scale-105"
+              style={{
+                background: `linear-gradient(135deg, ${service.color}, ${service.color === "#0078D4" ? "#00B4D8" : "#0078D4"})`,
+                fontFamily: "'DM Sans', sans-serif",
+              }}
+            >
+              Get Started
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── HOME PAGE ───────────────────────────────────────────────────────────────
+
 export default function Home() {
   const { ref: statsRef, inView: statsInView } = useInView();
 
@@ -164,7 +407,6 @@ export default function Home() {
           backgroundPosition: "center right",
         }}
       >
-        {/* Dark overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B2A]/95 via-[#0D1B2A]/80 to-[#0D1B2A]/40" />
 
         <div className="relative container mx-auto px-4 lg:px-8 max-w-7xl pt-24 pb-16">
@@ -187,7 +429,6 @@ export default function Home() {
               </span>
             </motion.div>
 
-            {/* Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -209,7 +450,6 @@ export default function Home() {
               Aicen Solutions is a certified Microsoft Partner delivering end-to-end ERP implementation, support, and consulting services. We help SMEs and mid-market companies unlock the full power of Business Central.
             </motion.p>
 
-            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -219,14 +459,14 @@ export default function Home() {
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-[#0078D4] to-[#00B4D8] hover:from-[#006BBD] hover:to-[#00A3C4] text-white font-semibold px-8 py-3 rounded-lg shadow-xl shadow-blue-500/30 transition-all hover:scale-105 hover:shadow-blue-500/40"
+                  className="bg-gradient-to-r from-[#0078D4] to-[#00B4D8] hover:from-[#006BBD] hover:to-[#00A3C4] text-white font-semibold px-8 py-3 rounded-lg shadow-xl shadow-blue-500/30 transition-all hover:scale-105"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
                   Get a Free Consultation
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
-              <Link href="/services">
+              <a href="#services">
                 <Button
                   size="lg"
                   variant="outline"
@@ -235,10 +475,9 @@ export default function Home() {
                 >
                   Explore Our Services
                 </Button>
-              </Link>
+              </a>
             </motion.div>
 
-            {/* Trust indicators */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -255,7 +494,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
           <div className="w-0.5 h-8 bg-gradient-to-b from-transparent to-white/30 rounded-full" />
           <div className="w-1.5 h-1.5 bg-white/30 rounded-full" />
@@ -273,21 +511,18 @@ export default function Home() {
                 animate={statsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <StatCounter
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  label={stat.label}
-                  inView={statsInView}
-                />
+                <StatCounter value={stat.value} suffix={stat.suffix} label={stat.label} inView={statsInView} />
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── SERVICES SECTION ─── */}
-      <section className="py-24 bg-[#F0F4F8]">
+      {/* ─── DETAILED SERVICES SECTION ─── */}
+      <section id="services" className="py-24 bg-[#F0F4F8]">
         <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
+
+          {/* Section header */}
           <div className="text-center mb-16">
             <motion.span
               initial={{ opacity: 0 }}
@@ -306,7 +541,7 @@ export default function Home() {
               className="text-3xl md:text-4xl font-extrabold text-[#0D1B2A] mb-4"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
-              Comprehensive ERP Services
+              Our ERP Solutions & Services
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -316,72 +551,106 @@ export default function Home() {
               className="text-[#64748B] text-lg max-w-2xl mx-auto"
               style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
-              From initial implementation to ongoing support, we provide the full spectrum of Business Central services to ensure your success.
+              From first deployment to long-term growth, we cover every stage of your Business Central journey with specialist expertise and a client-first approach.
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, i) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group bg-white rounded-2xl p-7 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 hover:border-[#0078D4]/20 relative overflow-hidden"
+          {/* Service overview strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-wrap justify-center gap-3 mb-12"
+          >
+            {detailedServices.map((s) => (
+              <a
+                key={s.id}
+                href={`#svc-${s.id}`}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 hover:border-[#0078D4]/40 hover:bg-[#EBF5FF] transition-all text-sm font-medium text-[#374151] hover:text-[#0078D4] shadow-sm"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
               >
-                {/* Gradient accent top */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ background: `linear-gradient(90deg, ${service.color}, #00B4D8)` }}
-                />
+                <s.icon className="w-4 h-4" style={{ color: s.color }} />
+                {s.title}
+              </a>
+            ))}
+          </motion.div>
 
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                  style={{ background: `${service.color}15` }}
-                >
-                  <service.icon className="w-6 h-6" style={{ color: service.color }} />
-                </div>
-
-                <h3
-                  className="text-lg font-bold text-[#0D1B2A] mb-3"
-                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                >
-                  {service.title}
-                </h3>
-                <p
-                  className="text-[#64748B] text-sm leading-relaxed mb-5"
-                  style={{ fontFamily: "'DM Sans', sans-serif" }}
-                >
-                  {service.description}
-                </p>
-
-                <Link href={service.href}>
-                  <div className="flex items-center gap-1 text-sm font-semibold text-[#0078D4] group-hover:gap-2 transition-all cursor-pointer"
-                    style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                    Learn More <ChevronRight className="w-4 h-4" />
-                  </div>
-                </Link>
-              </motion.div>
+          {/* Service cards grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
+            {detailedServices.map((service, i) => (
+              <div key={service.id} id={`svc-${service.id}`}>
+                <ServiceCard service={service} index={i} />
+              </div>
             ))}
 
-            {/* View All Services Card */}
+            {/* CTA card — fills the last slot */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.55, delay: 0.45 }}
+              className="rounded-3xl bg-gradient-to-br from-[#0D1B2A] via-[#0A2540] to-[#0D1B2A] p-8 flex flex-col justify-between relative overflow-hidden"
             >
-              <Link href="/services">
-                <div className="h-full min-h-[200px] rounded-2xl border-2 border-dashed border-[#0078D4]/30 flex flex-col items-center justify-center p-7 hover:border-[#0078D4] hover:bg-[#0078D4]/5 transition-all group cursor-pointer">
-                  <div className="w-12 h-12 rounded-full bg-[#0078D4]/10 flex items-center justify-center mb-4 group-hover:bg-[#0078D4]/20 transition-colors">
-                    <ArrowRight className="w-5 h-5 text-[#0078D4]" />
-                  </div>
-                  <p className="text-[#0078D4] font-semibold text-center" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                    View All Services
-                  </p>
+              {/* Decorative blobs */}
+              <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#0078D4]/15 rounded-full blur-3xl" />
+              <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-[#00B4D8]/15 rounded-full blur-3xl" />
+
+              <div className="relative">
+                <div className="flex gap-0.5 mb-6">
+                  <div className="w-4 h-4 bg-[#F25022]" />
+                  <div className="w-4 h-4 bg-[#7FBA00]" />
+                  <div className="w-4 h-4 bg-[#00A4EF]" />
+                  <div className="w-4 h-4 bg-[#FFB900]" />
                 </div>
-              </Link>
+                <h3
+                  className="text-2xl font-extrabold text-white mb-3 leading-tight"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
+                  Not Sure Which Service You Need?
+                </h3>
+                <p
+                  className="text-white/60 text-sm leading-relaxed mb-8"
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                >
+                  Our consultants will assess your current situation and recommend the right combination of services to achieve your goals — at no cost.
+                </p>
+                <ul className="space-y-3 mb-8">
+                  {[
+                    "Free 60-minute discovery call",
+                    "No obligation assessment",
+                    "Tailored service recommendation",
+                  ].map((item) => (
+                    <li key={item} className="flex items-center gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#00B4D8] flex-shrink-0" />
+                      <span className="text-white/70 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="relative flex flex-col sm:flex-row gap-3">
+                <Link href="/contact">
+                  <Button
+                    className="bg-gradient-to-r from-[#0078D4] to-[#00B4D8] hover:from-[#006BBD] hover:to-[#00A3C4] text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-blue-500/20 transition-all hover:scale-105"
+                    style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  >
+                    Book Free Consultation
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+                <Link href="/services">
+                  <Button
+                    variant="outline"
+                    className="border-white/20 text-white hover:bg-white/10 font-semibold px-6 py-3 rounded-xl bg-transparent"
+                    style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  >
+                    Full Services Page
+                  </Button>
+                </Link>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -391,7 +660,6 @@ export default function Home() {
       <section id="why-us" className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Image */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -406,7 +674,6 @@ export default function Home() {
                   className="w-full h-[450px] object-cover"
                 />
               </div>
-              {/* Floating stat card */}
               <div className="absolute -bottom-6 -right-6 bg-[#0D1B2A] rounded-2xl p-5 shadow-2xl">
                 <div className="text-3xl font-extrabold text-white mb-1" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                   <span className="gradient-text">12+</span>
@@ -415,7 +682,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Content */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -434,7 +700,6 @@ export default function Home() {
                 style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 With over a decade of experience and 150+ successful implementations, Aicen Solutions brings deep expertise, industry knowledge, and a commitment to your long-term success. We don't just implement software — we transform businesses.
               </p>
-
               <ul className="space-y-4">
                 {whyUsPoints.map((point, i) => (
                   <motion.li
@@ -452,7 +717,6 @@ export default function Home() {
                   </motion.li>
                 ))}
               </ul>
-
               <div className="mt-8">
                 <Link href="/about">
                   <Button
@@ -471,7 +735,6 @@ export default function Home() {
 
       {/* ─── INDUSTRIES SECTION ─── */}
       <section className="py-24 relative overflow-hidden">
-        {/* Background */}
         <div
           className="absolute inset-0"
           style={{
@@ -588,18 +851,15 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="bg-white rounded-2xl p-7 shadow-sm hover:shadow-lg transition-all border border-gray-100"
               >
-                {/* Stars */}
                 <div className="flex gap-1 mb-5">
                   {Array.from({ length: t.rating }).map((_, j) => (
                     <Star key={j} className="w-4 h-4 fill-[#FFB900] text-[#FFB900]" />
                   ))}
                 </div>
-
                 <p className="text-[#374151] text-sm leading-relaxed mb-6 italic"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}>
                   "{t.quote}"
                 </p>
-
                 <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0078D4] to-[#00B4D8] flex items-center justify-center text-white font-bold text-sm"
                     style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
@@ -643,7 +903,6 @@ export default function Home() {
                 style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 Business Central is a comprehensive, cloud-based ERP solution that connects your entire business — from finance and operations to sales and customer service — in a single, unified platform.
               </p>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { title: "Cloud-First", desc: "Access your business data anywhere, anytime" },
@@ -689,7 +948,6 @@ export default function Home() {
 
       {/* ─── CTA SECTION ─── */}
       <section className="py-20 bg-gradient-to-br from-[#0D1B2A] via-[#0A2540] to-[#0D1B2A] relative overflow-hidden">
-        {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-20 -right-20 w-80 h-80 bg-[#0078D4]/10 rounded-full blur-3xl" />
           <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#00B4D8]/10 rounded-full blur-3xl" />
