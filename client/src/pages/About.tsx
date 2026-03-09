@@ -218,8 +218,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-20 bg-[#0D1B2A]">
+      {/* Timeline - Hidden */}
+      <section className="py-20 bg-[#0D1B2A] hidden">
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
           <div className="text-center mb-14">
             <span className="inline-block text-[#00B4D8] font-semibold text-sm uppercase tracking-widest mb-3"
@@ -268,8 +268,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-20 bg-white">
+      {/* Team - Hidden */}
+      <section className="py-20 bg-white hidden">
         <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
           <div className="text-center mb-14">
             <span className="inline-block text-[#0078D4] font-semibold text-sm uppercase tracking-widest mb-3"
