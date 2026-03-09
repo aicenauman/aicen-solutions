@@ -19,22 +19,22 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    value: "info@aicensolutions.com",
+    value: "info@aicensolutions.com.ph",
     sub: "We respond within 24 hours",
-    href: "mailto:info@aicensolutions.com",
+    href: "mailto:info@aicensolutions.com.ph",
   },
   {
     icon: Phone,
     title: "Call Us",
-    value: "+1 (234) 567-890",
+    value: "+63 (02) 7442-8843",
     sub: "Mon–Fri, 9am–6pm",
-    href: "tel:+1234567890",
+    href: "tel:+6327442-8843",
   },
   {
     icon: MapPin,
     title: "Visit Us",
-    value: "123 Business Avenue",
-    sub: "Tech District, City 00000",
+    value: "Uptown Bonifacio Tower, 11th Ave.",
+    sub: "Bonifacio Global City, Taguig, Manila, Philippines",
     href: "#",
   },
   {

@@ -102,22 +102,22 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-[#00B4D8] mt-0.5 flex-shrink-0" />
-                <a href="mailto:info@aicensolutions.com" className="text-white/60 hover:text-white text-sm transition-colors"
+                <a href="mailto:info@aicensolutions.com.ph" className="text-white/60 hover:text-white text-sm transition-colors"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  info@aicensolutions.com
+                  info@aicensolutions.com.ph
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-[#00B4D8] mt-0.5 flex-shrink-0" />
-                <a href="tel:+1234567890" className="text-white/60 hover:text-white text-sm transition-colors"
+                <a href="tel:+6327442-8843" className="text-white/60 hover:text-white text-sm transition-colors"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  +1 (234) 567-890
+                  +63 (02) 7442-8843
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#00B4D8] mt-0.5 flex-shrink-0" />
                 <span className="text-white/60 text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  123 Business Avenue,<br />Tech District, City 00000
+                  Uptown Bonifacio Tower, 11th Ave.,<br />Bonifacio Global City, Taguig, Manila, Philippines
                 </span>
               </li>
             </ul>
