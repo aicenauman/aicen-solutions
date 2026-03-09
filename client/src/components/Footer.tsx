@@ -76,6 +76,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { label: "About Us", href: "/about" },
+                { label: "Case Studies", href: "/case-studies" },
                 { label: "Industries We Serve", href: "/industries" },
                 { label: "Why Choose Us", href: "/#why-us" },
                 { label: "Contact Us", href: "/contact" },

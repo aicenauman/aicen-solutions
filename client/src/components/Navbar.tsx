@@ -23,6 +23,7 @@ const navLinks = [
     ],
   },
   { label: "Industries", href: "/industries" },
+  { label: "Case Studies", href: "/case-studies" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
